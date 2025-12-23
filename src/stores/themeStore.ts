@@ -5,7 +5,7 @@ import { ref, type Ref } from 'vue'
 export const useThemeStore = defineStore(
   'themeStore',
   () => {
-    const theme: Ref<string> = ref('dark')
+    const theme: Ref<themeType> = ref('dark')
     function setTheme(newTheme: themeType) {
       theme.value = newTheme
       const bodyElement = document.body
