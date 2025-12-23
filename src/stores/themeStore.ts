@@ -15,5 +15,5 @@ export const useThemeStore = defineStore(
   },
   {
     persist: true,
-  },
+  } as any,
 )
