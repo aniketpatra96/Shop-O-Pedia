@@ -24,6 +24,7 @@
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
     "cloudinary": "^2.8.0",
+    "crypto": "^1.0.1",
     "firebase": "^12.7.0",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "^4.7.1",

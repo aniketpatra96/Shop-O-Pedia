@@ -62,6 +62,10 @@ const router = createRouter({
       props: true,
       beforeEnter: [isAdmin],
     },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: { name: APP_ROUTE_NAMES.NOT_FOUND },
+    },
   ],
   linkActiveClass: 'active',
 })

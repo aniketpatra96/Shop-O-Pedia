@@ -122,8 +122,9 @@ import { onMounted, ref, type Ref } from 'vue'
 import { useSwal } from '@/composibles/useSwal'
 import { RouterLink, useRouter, type Router } from 'vue-router'
 import { APP_ROUTE_NAMES } from '@/constants/RouteNames'
+import { deleteFromCloudinary } from '@/utility/cloudinary'
 const router: Router = useRouter()
-const { showConfirm, showSuccess } = useSwal()
+const { showConfirm, showSuccess, showError } = useSwal()
 const products: Ref<Partial<Product>[]> = ref([])
 const loading: Ref<boolean> = ref(false)
 
@@ -147,6 +148,12 @@ async function handleProductDelete(productId: string): Promise<void> {
     loading.value = true
     const confirmResult = await showConfirm('Are you sure you want to delete this product?')
     if (confirmResult.isConfirmed) {
+      const product = await productService.getProduct(productId)
+      if (product === null) {
+        await showError('Unable to fetch product image for cloudinary')
+        return
+      }
+      await deleteFromCloudinary(product.image)
       await productService.deleteProduct(productId)
       await showSuccess('Product deleted successfully')
       fetchProducts()
