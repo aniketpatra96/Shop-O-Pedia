@@ -1,5 +1,6 @@
 import type { themeType } from '@/@types/ThemeType'
 import { defineStore } from 'pinia'
+import type { PersistenceOptions } from 'pinia-plugin-persistedstate'
 import { ref, type Ref } from 'vue'
 
 export const useThemeStore = defineStore(
@@ -15,5 +16,7 @@ export const useThemeStore = defineStore(
   },
   {
     persist: true,
-  } as any,
+  } as {
+    persist: boolean | PersistenceOptions
+  },
 )
