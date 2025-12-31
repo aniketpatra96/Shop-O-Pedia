@@ -20,3 +20,4 @@ export const useThemeStore = defineStore(
     persist: boolean | PersistenceOptions
   },
 )
+

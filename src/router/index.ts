@@ -1,13 +1,5 @@
-import HomePage from '@/views/Home/HomePage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { APP_ROUTE_NAMES } from '@/constants/RouteNames'
-import SignIn from '@/views/auth/SignIn.vue'
-import SignUp from '@/views/auth/SignUp.vue'
-import AccessDenied from '@/views/auth/AccessDenied.vue'
-import NotFound from '@/views/auth/NotFound.vue'
-import ContactUs from '@/views/Home/ContactUs.vue'
-import ProductList from '@/views/Product/ProductList.vue'
-import ProductUpsert from '@/views/Product/ProductUpsert.vue'
 import { useAuthStore } from '@/stores/authStore'
 
 const router = createRouter({
@@ -16,49 +8,49 @@ const router = createRouter({
     {
       path: '/',
       name: APP_ROUTE_NAMES.HOME,
-      component: HomePage,
+      component: () => import('@/views/Home/HomePage.vue'),
     },
     {
       path: '/sign-in',
       name: APP_ROUTE_NAMES.SIGN_IN,
-      component: SignIn,
+      component: () => import('@/views/auth/SignIn.vue'),
     },
     {
       path: '/sign-up',
       name: APP_ROUTE_NAMES.SIGN_UP,
-      component: SignUp,
+      component: () => import('@/views/auth/SignUp.vue'),
     },
     {
       path: '/access-denied',
       name: APP_ROUTE_NAMES.ACCESS_DENIED,
-      component: AccessDenied,
+      component: () => import('@/views/auth/AccessDenied.vue'),
     },
     {
       path: '/not-found',
       name: APP_ROUTE_NAMES.NOT_FOUND,
-      component: NotFound,
+      component: () => import('@/views/auth/NotFound.vue'),
     },
     {
       path: '/contact-us',
       name: APP_ROUTE_NAMES.CONTACT_US,
-      component: ContactUs,
+      component: () => import('@/views/Home/ContactUs.vue'),
     },
     {
       path: '/product-list',
       name: APP_ROUTE_NAMES.PRODUCT_LIST,
-      component: ProductList,
+      component: () => import('@/views/Product/ProductList.vue'),
       beforeEnter: [isAdmin],
     },
     {
       path: '/product-create',
       name: APP_ROUTE_NAMES.PRODUCT_CREATE,
-      component: ProductUpsert,
+      component: () => import('@/views/Product/ProductUpsert.vue'),
       beforeEnter: [isAdmin],
     },
     {
       path: '/product-update/:id',
       name: APP_ROUTE_NAMES.PRODUCT_UPDATE,
-      component: ProductUpsert,
+      component: () => import('@/views/Product/ProductUpsert.vue'),
       props: true,
       beforeEnter: [isAdmin],
     },
